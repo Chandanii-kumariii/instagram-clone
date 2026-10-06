@@ -25,6 +25,8 @@ import { useCreateModal } from "@/lib/createmodelcontext";
 import axiosInstance from "@/lib/axios";
 import { toast } from "../ui/Toast";
 import { useAuthStore } from "@/store/authStore";
+import { ShieldAlert } from "lucide-react";
+
 const Sidebar = () => {
   const totalUnread = mockConversations.reduce((s, c) => s + c.unread, 0);
   const { theme, toggle } = useTheme();
@@ -150,12 +152,25 @@ const Sidebar = () => {
             Profile
           </span>
         </Link>
+        
+        {/* Admin Dashboard Link */}
+        {useAuthStore.getState().user?.role === "Admin" && (
+          <Link
+            href="/admin"
+            className="flex items-center gap-4 px-3 py-3 rounded-lg text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors w-full"
+          >
+            <ShieldAlert size={24} strokeWidth={1.5} className="shrink-0" />
+            <span className="hidden xl:block text-[15px] font-normal">
+              Admin Panel
+            </span>
+          </Link>
+        )}
       </div>
 
       {/* More */}
       <div className="relative">
         {moreOpen && (
-          <div className="absolute bottom-14 left-0 w-[250px] bg-whiterounded-2xl shadow-xl border border-ig-border overflow-hidden z-50">
+          <div className="absolute bottom-14 left-0 w-[250px] bg-white dark:bg-[#121212] rounded-2xl shadow-xl border border-ig-border overflow-hidden z-50">
             {[
               { icon: Settings, label: "Settings" },
               { icon: Activity, label: "Your activity" },

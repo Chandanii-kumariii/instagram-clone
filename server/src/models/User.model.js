@@ -43,6 +43,28 @@ const userSchema = new mongoose.Schema(
         ref: "User",
       },
     ],
+    mobile: {
+      type: String,
+      default: "", // Assuming empty strings if not provided
+    },
+    language: {
+      type: String,
+      enum: ["en", "es", "hi", "pt", "zh", "fr"],
+      default: "en",
+    },
+    subscriptionPlan: {
+      type: String,
+      enum: ["Free", "Bronze", "Silver", "Gold"],
+      default: "Free",
+    },
+    subscriptionExpiry: {
+      type: Date,
+    },
+    role: {
+      type: String,
+      enum: ["User", "Admin"],
+      default: "User",
+    }
   },
   { timestamps: true }
 );

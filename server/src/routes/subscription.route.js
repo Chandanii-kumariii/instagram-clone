@@ -1,9 +1,9 @@
 import express from "express";
-import { createPost } from "../controllers/Post.controller.js";
+import { purchaseSubscription } from "../controllers/Subscription.controller.js";
 import { protectRoute } from "../middleware/auth.middleware.js";
 
 const router = express.Router();
 
-router.post("/", protectRoute, createPost);
+router.post("/purchase", protectRoute, purchaseSubscription);
 
 export default router;

@@ -38,6 +38,22 @@ const postSchema = new mongoose.Schema(
         },
       },
     ],
+    status: {
+      type: String,
+      enum: ["Published", "Scheduled", "Draft", "Failed"],
+      default: "Published",
+    },
+    scheduledAt: {
+      type: Date,
+    },
+    errorLog: {
+      type: String,
+      default: "",
+    },
+    location: {
+      type: String,
+      default: "",
+    }
   },
   { timestamps: true }
 );
